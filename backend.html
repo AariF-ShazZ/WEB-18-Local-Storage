@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+          h1{
+            color:teal;
+            text-align: center;
+            text-decoration: underline;
+            font-size: 60px;
+            margin-bottom: 50px;
+        }
+          #navbar{
+            width:98% ;
+            display: flex;
+            margin: auto;
+            height:80px;
+            background-color: rgb(115, 115, 215);
+            margin-top: 15px;
+        }
+        #navbar{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div><a href="backend.html">Backend</a></div>
+        <div><a href="frontend.html">Frontend</a></div>
+    </div>
+    <h1>Backend</h1>
+    <form id="investorForm">
+        <input id="imgURL" type="text" placeholder="Enter Image URL">
+        <input id="name" type="text" placeholder="Enter investor name">
+        <input id="role" type="text" placeholder="Enter investor role">
+        <input id="companyLogo" type="text" placeholder="Enter company logo URL">
+        <input type="submit">
+    </form>
+  
+</body>
+</html>
+<script>
+    document.querySelector("#investorForm").addEventListener("submit",investorsFun);
+    var investorArr=JSON.parse(localStorage.getItem("investorData")) || [];
+
+    function investorsFun(){
+        event.preventDefault();
+
+        var investorObj={
+            investorImg:investorForm.imgURL.value,
+            investorName:investorForm.name.value,
+            investorRole:investorForm.role.value,
+            investorCompanyLogo:investorForm.companyLogo.value,
+        }
+        investorArr.push(investorObj);
+        localStorage.setItem("investorData",JSON.stringify(investorArr));
+    }
+</script>
